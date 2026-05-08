@@ -6,28 +6,32 @@ import Home from './pages/Home';
 import ProductList from './pages/ProductList';
 import ProductDetail from './pages/ProductDetail';
 import Cart from './pages/Cart';
+import { CartProvider } from './context/CartContext'; // Import karein
 
 function App() {
   return (
+    <CartProvider>
     <Router>
-      <div className="bg-[#F7FAFC] min-h-screen font-sans">
-        {/* Navbar fixed rahega */}
+      <div className="bg-[#F7FAFC] min-h-screen font-sans flex flex-col">
+        {/* Navbar hamesha top par rahega */}
         <Navbar />
         
-        <Routes>
-          {/* Default page Home show hoga */}
-          <Route path="/" element={<Home />} />
-          
-          {/* /products par Product List show hoga */}
-          <Route path="/products" element={<ProductList />} />
-          <Route path="/product-detail" element={<ProductDetail />} />
-          <Route path="/cart" element={<Cart />} />
-        </Routes>
+        {/* Main Content Area */}
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<ProductList />} />
+            {/* 🟢 Dynamic Route for Product Details */}
+            <Route path="/product/:id" element={<ProductDetail />} />
+            <Route path="/cart" element={<Cart />} />
+          </Routes>
+        </div>
 
-        {/* Footer fixed rahega */}
+        {/* Footer hamesha bottom par rahega */}
         <Footer />
       </div>
     </Router>
+    </CartProvider>
   );
 }
 
