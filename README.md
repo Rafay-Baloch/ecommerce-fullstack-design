@@ -21,10 +21,22 @@ This project is part of my Full-Stack Web Development Internship. It's a profess
 - [x] **Sticky Sidebar:** Optimized UI for easy navigation through categories.
 - [x] **Cart Logic:** Developed full cart management (Add, Remove, Clear All, and Counter).
 
-### 🟡 Week 3: Auth & Advanced Features (Coming Soon)
-- [ ] User Authentication (Login/Signup with JWT).
-- [ ] Protected Routes & Admin Panel.
-- [ ] Final Deployment.
+### 🟡 Week 3: Auth, Admin CRUD & Persistence (Final Phase)
+In this final phase, the core focus was on security, administration, and data persistence:
+
+- [x] User Authentication: Implemented secure Login and Signup functionality using JWT (JSON Web Tokens) and password hashing.
+
+- [x] Professional Admin Dashboard: Created a high-end dashboard for inventory management.
+
+- [x] Full CRUD Operations: Admins can Create, Read, Update, and Delete products directly from the UI.
+
+- [x] Protected Routes: Restricted access to sensitive admin pages to authorized users only.
+
+- [x] Cart Persistence: Integrated LocalStorage with React Context API to ensure cart items remain saved even after a page refresh.
+
+- [x]Responsive Design: Fully optimized for mobile, tablet, and desktop views using Tailwind CSS.
+
+- [x] Version Control: Final source code committed and pushed to GitHub.
 
 ## 🛠️ Tech Stack
 | Layer | Technology |
