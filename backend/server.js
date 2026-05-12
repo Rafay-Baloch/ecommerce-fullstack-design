@@ -5,17 +5,20 @@ require('dotenv').config();
 
 const app = express();
 
-// Middlewares (JSON data read karne aur cross-origin access ke liye)
+// Middlewares
 app.use(express.json());
 app.use(cors());
+
+// 🟢 Routes
 app.use('/api/products', require('./routes/productRoutes'));
+app.use('/api/users', require('./routes/userRoutes')); // 👈 Ye line add kar di hai
 
 // MongoDB Connection Logic
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("✅ MongoDB Connected Successfully!"))
   .catch(err => console.log("❌ Connection Error: ", err));
 
-// Test Route (Check karne ke liye ke backend chal raha hai)
+// Test Route
 app.get('/', (req, res) => {
   res.send("API is running...");
 });

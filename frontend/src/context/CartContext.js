@@ -1,11 +1,21 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useContext, useEffect } from 'react';
 
 const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
+  // 🟢 1. Check karein ke kya pehle se LocalStorage mein koi data parha hai?
+  const initialCart = localStorage.getItem('cartItems') 
+    ? JSON.parse(localStorage.getItem('cartItems')) 
+    : [];
 
-  // 1. Product ko cart mein add karne ke liye
+  const [cart, setCart] = useState(initialCart);
+
+  // 🟢 2. Jab bhi cart change ho, usey foran browser ki memory (LocalStorage) mein save karein
+  useEffect(() => {
+    localStorage.setItem('cartItems', JSON.stringify(cart));
+  }, [cart]);
+
+  // Product ko cart mein add karne ke liye
   const addToCart = (product) => {
     setCart((prevCart) => {
       const isExist = prevCart.find((item) => item._id === product._id);
@@ -18,22 +28,22 @@ export const CartProvider = ({ children }) => {
     });
   };
 
-  // 2. Product remove karne ke liye (Single item)
+  // Product remove karne ke liye (Single item)
   const removeFromCart = (id) => {
     setCart(cart.filter((item) => item._id !== id));
   };
 
-  // 3. 🟢 Poora cart khali karne ke liye (Remove All)
+  // Poora cart khali karne ke liye
   const clearCart = () => {
     setCart([]);
+    localStorage.removeItem('cartItems'); // LocalStorage se bhi delete
   };
 
-  // 4. Total Items Counter Logic (Navbar badge ke liye)
+  // Total Items Counter Logic
   const totalItems = cart.reduce((total, item) => total + item.qty, 0);
 
   return (
     <CartContext.Provider 
-      // 🟢 Yahan clearCart add kar diya hai taake Cart page isay use kar sakay
       value={{ cart, addToCart, removeFromCart, clearCart, totalItems }}
     >
       {children}
