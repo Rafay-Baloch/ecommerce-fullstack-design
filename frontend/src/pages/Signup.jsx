@@ -13,11 +13,14 @@ const Signup = () => {
     e.preventDefault();
     try {
       // 🟢 Backend API call
-      const { data } = await axios.post('http://localhost:5000/api/users/register', {
-        name,
-        email,
-        password
-      });
+     const { data } = await axios.post(
+          'https://hospitable-transformation-production-904d.up.railway.app/api/users/register',
+       {
+          name,
+          email,
+          password
+       }
+      );
       
       console.log("User Registered:", data);
       alert("Registration Successful! Please Login.");

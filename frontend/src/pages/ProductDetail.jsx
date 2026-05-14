@@ -18,11 +18,11 @@ const ProductDetail = () => {
     const fetchData = async () => {
       try {
         // 1. Current product fetch karein
-        const res1 = await axios.get(`http://localhost:5000/api/products/${id}`);
+        const res1 = await axios.get(`https://hospitable-transformation-production-904d.up.railway.app/api/products/${id}`);
         setProduct(res1.data);
 
         // 2. Saare products fetch karein (Related/Suggestion ke liye)
-        const res2 = await axios.get('http://localhost:5000/api/products');
+        const res2 = await axios.get('https://hospitable-transformation-production-904d.up.railway.app/api/products');
         setAllProducts(res2.data);
 
         setLoading(false);

@@ -16,7 +16,7 @@ const ProductList = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const { data } = await axios.get('http://localhost:5000/api/products');
+        const { data } = await axios.get('https://hospitable-transformation-production-904d.up.railway.app/api/products');
         
         // 🟢 If there is a search query, filter the data locally
         if (searchQuery) {

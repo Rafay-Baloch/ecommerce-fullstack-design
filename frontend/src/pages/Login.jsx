@@ -13,10 +13,13 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post('http://localhost:5000/api/users/login', {
-        email,
-        password
-      });
+      const { data } = await axios.post(
+  'https://hospitable-transformation-production-904d.up.railway.app/api/users/login',
+  {
+    email,
+    password
+  }
+);
       
       login(data); // User data context aur localStorage mein save ho jayega
       alert("Login Successful!");

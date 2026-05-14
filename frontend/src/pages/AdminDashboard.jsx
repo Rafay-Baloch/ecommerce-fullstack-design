@@ -22,7 +22,7 @@ const AdminDashboard = () => {
   }, [user, navigate]);
 
   const fetchProducts = async () => {
-    const { data } = await axios.get('http://localhost:5000/api/products');
+    const { data } = await axios.get('https://hospitable-transformation-production-904d.up.railway.app/api/products');
     setProducts(data);
   };
 
@@ -36,10 +36,18 @@ const AdminDashboard = () => {
     const config = { headers: { Authorization: `Bearer ${user.token}` } };
     try {
       if (isEditing) {
-        await axios.put(`http://localhost:5000/api/products/${currentProductId}`, formData, config);
-      } else {
-        await axios.post('http://localhost:5000/api/products', formData, config);
-      }
+      await axios.put(
+  `https://hospitable-transformation-production-904d.up.railway.app/api/products/${currentProductId}`,
+  formData,
+  config
+);
+} else {
+  await axios.post(
+    'https://hospitable-transformation-production-904d.up.railway.app/api/products',
+    formData,
+    config
+  );
+}
       closeModal();
       fetchProducts();
     } catch (error) { alert('Operation failed'); }
@@ -155,7 +163,10 @@ const AdminDashboard = () => {
               <button onClick={() => setShowDeleteModal(false)} className="flex-1 py-4 rounded-2xl font-bold text-slate-400 bg-slate-50 hover:bg-slate-100 transition-all">Cancel</button>
               <button onClick={async () => {
                  const config = { headers: { Authorization: `Bearer ${user.token}` } };
-                 await axios.delete(`http://localhost:5000/api/products/${productToDelete}`, config);
+                 await axios.delete(
+                                `https://hospitable-transformation-production-904d.up.railway.app/api/products/${productToDelete}`,
+                               config
+                                        );
                  setShowDeleteModal(false); fetchProducts();
               }} className="flex-1 py-4 rounded-2xl font-bold text-white bg-red-500 hover:bg-red-600 shadow-xl shadow-red-200 transition-all">Delete</button>
             </div>
